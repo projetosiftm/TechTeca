@@ -2,22 +2,21 @@ package model.javabean;
 
 public class Exemplar {
 	
-	private Integer id;
+	private Integer id, idLivro;
 	private String disponibilidade;
 	
-	private Livro livro;
 	public Exemplar() {
 		
 	}
 	
-	public Exemplar(Livro livro, String disponibilidade) {
-		this.livro = livro;
+	public Exemplar(int idLivro, String disponibilidade) {
+		this.idLivro = idLivro;
 		this.disponibilidade = disponibilidade;
 	}
 
-	public Exemplar(int id,Livro livro, String disponibilidade) {
+	public Exemplar(int id,int idLivro, String disponibilidade) {
 		this.id = id;
-		this.livro = livro;
+		this.idLivro = idLivro;
 		this.disponibilidade = disponibilidade;
 		
 	}

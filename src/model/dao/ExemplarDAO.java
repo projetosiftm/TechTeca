@@ -18,13 +18,10 @@ public class ExemplarDAO implements DAO {
 		Exemplar exemplar = null;
 		try {
 			stmt = con.createStatement();
-			String sql = "SELECT * FROM exemplar,livro where id='" + (String) id + "'";
+			String sql = "SELECT * FROM exemplar where id='" + (String) id + "'";
 			ResultSet rs = stmt.executeQuery(sql);
 			if (rs.next()) {
-				exemplar = new Exemplar(rs.getInt("id"),new Livro(rs.getInt("id"), rs.getInt("idAdministrador"), rs.getInt("ano"),
-						rs.getString("titulo"), rs.getString("autor"),rs.getString("descricao"), rs.getString("editora"), 
-						rs.getString("idioma"),
-						rs.getString("isbn"), rs.getString("foto")), rs.getString("disponibilidade"));
+				exemplar = new Exemplar(rs.getInt("id"),(rs.getInt("idLivro")),rs.getString("disponibilidade"));
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();
