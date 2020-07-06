@@ -3,22 +3,22 @@ package model.tarefa;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.dao.UsuarioDAO;
-import model.javabean.Usuario;
+import model.dao.CredenciaisDAO;
+import model.javabean.Credenciais;
 
-public class CadastrarUsuarioTarefa implements Tarefa {
+public class CadastrarCredenciaisTarefa implements Tarefa {
 
 	@Override
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// recuperar os parametros do formulario
-		Usuario usuario = new Usuario(request.getParameter("nome"), 
-				request.getParameter("telefone"),
-				request.getParameter("email"));
+		Credenciais credenciais = new Credenciais(Integer.parseInt(request.getParameter("idPessoa")),
+				request.getParameter("usuario"),
+				request.getParameter("senha"));
 		// enviar dados para o DAO persistir
-		new UsuarioDAO().salvar(usuario);
+		new CredenciaisDAO().salvar(credenciais);
 		//retornar o nome da view
 		request.setAttribute("msg", "parabéns usuario cadastrado com sucesso");
-		return "cadastroUsuario";
+		return "cadastroCredenciais";
 	}
 
 }

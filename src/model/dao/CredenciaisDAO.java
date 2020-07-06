@@ -7,22 +7,22 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.javabean.Usuario;
+import model.javabean.Credenciais;
 
-public class UsuarioDAO implements DAO {
 
-	@Override
-	public Object recuperarPorId(Object id) {
+public class CredenciaisDAO implements DAO {
+
+	public Credenciais busca(String usuario, String senha) {
 		Connection con = FabricaDeConexoes.getConnection();
 		Statement stmt = null;
-		Usuario usuario = null;
+		Credenciais credenciais = null;
 		try {
 			stmt = con.createStatement();
-			String sql = "SELECT * FROM usuario where id='" + (String) id + "'";
+			String sql = "SELECT nome FROM credenciais where usuario='" + usuario + "' and senha='" + senha + "'";
 			ResultSet rs = stmt.executeQuery(sql);
 			if (rs.next()) {
-				usuario = new Usuario(rs.getInt("id"), rs.getString("nome"), rs.getString("telefone"),
-						rs.getString("email"));
+				usuario = rs.getString("usuario");
+				credenciais = new Credenciais(usuario);
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -40,7 +40,39 @@ public class UsuarioDAO implements DAO {
 				se2.printStackTrace();
 			}
 		}
-		return usuario;
+		return credenciais;
+	}
+
+	@Override
+	public Object recuperarPorId(Object id) {
+		Connection con = FabricaDeConexoes.getConnection();
+		Statement stmt = null;
+		Credenciais credenciais = null;
+		try {
+			stmt = con.createStatement();
+			String sql = "SELECT * FROM credenciais where id='" + (String) id + "'";
+			ResultSet rs = stmt.executeQuery(sql);
+			if (rs.next()) {
+				credenciais = new Credenciais(rs.getInt("id"), rs.getInt("idPessoa"), rs.getString("usuario"),
+						rs.getString("senha"));
+			}
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null) {
+					stmt.close();
+				}
+				if (con != null) {
+					con.close();
+				}
+			} catch (SQLException se2) {
+				se2.printStackTrace();
+			}
+		}
+		return credenciais;
 	}
 
 	@Override
@@ -49,12 +81,11 @@ public class UsuarioDAO implements DAO {
 		Connection con = FabricaDeConexoes.getConnection();
 		// montar a consulta
 		Statement stmt = null;
-		Usuario usuario = null;
+		Credenciais credenciais = null;
 		try {
 			stmt = con.createStatement();
-			String sql = "insert into usuario(nome,telefone,email) values('"
-					+ ((Usuario) entidade).getNome() + "','" + ((Usuario) entidade).getTelefone() + "','"
-					+ ((Usuario) entidade).getEmail() + "');";
+			String sql = "insert into credenciais(id_pessoa,usuario,senha) values('" + ((Credenciais) entidade).getIdPessoa() + "','"
+					+ ((Credenciais) entidade).getUsuario() + "','" + ((Credenciais) entidade).getSenha() + "');";
 			System.out.println(sql);
 			stmt.executeUpdate(sql);
 		} catch (SQLException se) {
@@ -83,7 +114,7 @@ public class UsuarioDAO implements DAO {
 		Statement stmt = null;
 		try {
 			stmt = con.createStatement();
-			String sql = "delete from usuario where id=" + id;
+			String sql = "delete from credenciais where id="+id;
 			System.out.println(sql);
 			stmt.executeUpdate(sql);
 		} catch (SQLException se) {
@@ -108,14 +139,14 @@ public class UsuarioDAO implements DAO {
 	public List listarTodos() {
 		Connection con = FabricaDeConexoes.getConnection();
 		Statement stmt = null;
-		List<Usuario> usuario = new ArrayList<Usuario>();
+		List<Credenciais> credenciais = new ArrayList<Credenciais>();
 		try {
 			stmt = con.createStatement();
-			String sql = "SELECT * FROM usuario;";
+			String sql = "SELECT * FROM credenciais;";
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
-				usuario.add(new Usuario(rs.getInt("id"), rs.getString("nome"), rs.getString("telefone"),
-						rs.getString("email")));
+				credenciais.add(new Credenciais(rs.getInt("id"), rs.getInt("idPessoa"), rs.getString("usuario"),
+						rs.getString("senha")));
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -133,7 +164,7 @@ public class UsuarioDAO implements DAO {
 				se2.printStackTrace();
 			}
 		}
-		return usuario;
+		return credenciais;
 	}
 
 	@Override
@@ -143,13 +174,13 @@ public class UsuarioDAO implements DAO {
 		// montar a consulta
 		Statement stmt = null;
 		try {
-			String nome = ((Usuario) entidade).getNome();
-			String telefone = ((Usuario) entidade).getTelefone();
-			String email = ((Usuario) entidade).getEmail();
-			int id = ((Usuario) entidade).getId();
+			int idPessoa = ((Credenciais) entidade).getIdPessoa();
+			String usuario = ((Credenciais) entidade).getUsuario();
+			String senha = ((Credenciais) entidade).getSenha();
+			int id = ((Credenciais) entidade).getId();
 			stmt = con.createStatement();
-			String sql = "UPDATE usuario" + " SET nome = '" + nome + "'," + " telefone ='" + telefone + "',"
-					+ " email = '" + email + "'" + " WHERE id = " + id;
+			String sql = "UPDATE credenciais" + " SET id_pessoa = '" + idPessoa + "'," + " usuario ='" + usuario + "'," + " senha = '"
+					+ senha + "'" + " WHERE id = " + id;
 			stmt.executeUpdate(sql);
 		} catch (SQLException se) {
 			se.printStackTrace();
