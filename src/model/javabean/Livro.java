@@ -1,15 +1,18 @@
 package model.javabean;
 
+import java.util.Date;
+
 public class Livro {
 
-	private Integer id, idAdministrador, ano;
+	private Integer id, idAdministrador;
 	private String titulo, autor, descricao, editora, idioma, isbn, foto;
+	private Date ano;
 
 	public Livro() {
 		super();
 	}
 
-	public Livro(Integer idAdministrador, Integer ano, String titulo, String autor, String descricao, String editora,
+	public Livro(Integer idAdministrador, Date ano, String titulo, String autor, String descricao, String editora,
 			String idioma, String isbn, String foto) {
 		this.idAdministrador = idAdministrador;
 		this.ano = ano;
@@ -22,7 +25,7 @@ public class Livro {
 		this.foto = foto;
 	}
 
-	public Livro(Integer id, Integer idAdministrador, Integer ano, String titulo, String autor, String descricao,
+	public Livro(Integer id, Integer idAdministrador, Date ano, String titulo, String autor, String descricao,
 			String editora, String idioma, String isbn, String foto) {
 		this.id = id;
 		this.idAdministrador = idAdministrador;
@@ -52,11 +55,11 @@ public class Livro {
 		this.idAdministrador = idAdministrador;
 	}
 
-	public Integer getAno() {
+	public Date getAno() {
 		return ano;
 	}
 
-	public void setAno(Integer ano) {
+	public void setAno(Date ano) {
 		this.ano = ano;
 	}
 

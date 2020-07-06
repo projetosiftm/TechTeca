@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import model.javabean.Livro;
@@ -20,7 +21,7 @@ public class LivroDAO implements DAO {
 			String sql = "SELECT * FROM livro where id='" + (String) id + "'";
 			ResultSet rs = stmt.executeQuery(sql);
 			if (rs.next()) {
-				livro = new Livro(rs.getInt("id"), rs.getInt("idAdministrador"), rs.getInt("ano"),
+				livro = new Livro(rs.getInt("id"), rs.getInt("idAdministrador"), rs.getDate("ano"),
 						rs.getString("titulo"), rs.getString("autor"),rs.getString("descricao"), rs.getString("editora"), 
 						rs.getString("idioma"),
 						rs.getString("isbn"), rs.getString("foto"));
@@ -56,12 +57,12 @@ public class LivroDAO implements DAO {
 			String sql = "insert into livro(titulo,autor,descricao,ano,editora,idioma,isbn,foto,id_administrador) values('"
 					+ ((Livro) entidade).getTitulo() + "','" 
 					+ ((Livro) entidade).getAutor() + "','" 
-					+ ((Livro) entidade).getDescricao() + "','" 
+					+ ((Livro) entidade).getDescricao() + "','"
 					+ ((Livro) entidade).getAno() + "','" 
 					+ ((Livro) entidade).getEditora() + "','" 
 					+ ((Livro) entidade).getIdioma() + "','" 
 					+ ((Livro) entidade).getIsbn() + "','" 
-					+ ((Livro) entidade).getFoto()  + "','" 
+					+ ((Livro) entidade).getFoto() + "','" 
 					+ ((Livro) entidade).getIdAdministrador()
 					+ "');";
 			System.out.println(sql);
@@ -123,7 +124,7 @@ public class LivroDAO implements DAO {
 			String sql = "SELECT * FROM livro;";
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
-				livro.add(new Livro(rs.getInt("id"), rs.getInt("idAdministrador"), rs.getInt("ano"),
+				livro.add(new Livro(rs.getInt("id"), rs.getInt("idAdministrador"), rs.getDate("ano"),
 						rs.getString("titulo"), rs.getString("autor"),rs.getString("descricao"), rs.getString("editora"), 
 						rs.getString("idioma"),
 						rs.getString("isbn"), rs.getString("foto")));
@@ -157,7 +158,7 @@ public class LivroDAO implements DAO {
 			String titulo = ((Livro) entidade).getTitulo();
 			String autor = ((Livro) entidade).getAutor();
 			String descricao = ((Livro) entidade).getDescricao();
-			int ano = ((Livro) entidade).getAno();
+			Date ano = ((Livro) entidade).getAno();
 			String editora = ((Livro) entidade).getEditora();
 			String idioma = ((Livro) entidade).getIdioma();
 			String isbn = ((Livro) entidade).getIsbn();

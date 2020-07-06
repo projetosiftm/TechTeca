@@ -18,11 +18,11 @@ public class CredenciaisDAO implements DAO {
 		Credenciais credenciais = null;
 		try {
 			stmt = con.createStatement();
-			String sql = "SELECT nome FROM credenciais where usuario='" + usuario + "' and senha='" + senha + "'";
+			String sql = "SELECT usuario,id_pessoa FROM credenciais where usuario='" + usuario + "' and senha='" + senha + "'";
 			ResultSet rs = stmt.executeQuery(sql);
 			if (rs.next()) {
 				usuario = rs.getString("usuario");
-				credenciais = new Credenciais(usuario);
+				credenciais = new Credenciais(usuario,rs.getInt("id_pessoa"));
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();

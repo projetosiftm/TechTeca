@@ -8,8 +8,9 @@ public class Credenciais {
 	private String senha;
 	
 	
-	public Credenciais(String usuario) {
+	public Credenciais(String usuario, int idPessoa) {
 		this.usuario = usuario;
+		this.idPessoa = idPessoa;
 	}
 
 	public Credenciais(Integer idPessoa, String usuario, String senha) {
