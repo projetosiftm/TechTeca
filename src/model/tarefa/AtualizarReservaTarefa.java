@@ -10,7 +10,7 @@ import model.javabean.Reserva;
 
 
 
-public class AtualizaReservaTarefa implements Tarefa {
+public class AtualizarReservaTarefa implements Tarefa {
 	
 	
 @Override
@@ -28,15 +28,20 @@ public String executa(HttpServletRequest request, HttpServletResponse response) 
 	}
 
 private String atualizaRegistro(HttpServletRequest request) {
-		Reserva reserva = new Reserva(Integer.parseInt(request.getParameter("id")),Integer.parseInt(request.getParameter("idUsuario")),Integer.parseInt(request.getParameter("idEmprestimo")),java.sql.Date.valueOf(request.getParameter("dateReserva")), request.getParameter("statusReserva"));
+		Reserva reserva = new Reserva(Integer.parseInt(request.getParameter("id")),
+				request.getParameter("dataReserva"), 
+				request.getParameter("statusReserva"),
+				Integer.parseInt(request.getParameter("idUsuario")),
+				Integer.parseInt(request.getParameter("idEmprestimo"))
+				);
 		new ReservaDAO().atualizar(reserva);
-		return "index";
+		return "reserva";
 	}
 
 private String exibeForm(HttpServletRequest request) {
 		Reserva reserva = (Reserva) new ReservaDAO().recuperarPorId(request.getParameter("id"));
 		request.setAttribute("entidade",reserva);
-		return "atualiza";
+		return "atualizarReserva";
 	}
 
 }

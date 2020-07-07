@@ -5,25 +5,24 @@ import java.util.Date;
 public class Reserva {
 	
 	private Integer id, idUsuario, idEmprestimo;
-	private Date dateReserva;
-	private String StatusReserva;
+	private String StatusReserva,dataReserva;
 	
 	public Reserva() {
 	}
 	
-	public Reserva(Integer idUsuario, Integer idEmprestimo, Date dateReserva, String statusReserva) {
+	public Reserva(String dataReserva,String statusReserva,Integer idUsuario, Integer idEmprestimo) {
 		this.idUsuario = idUsuario;
 		this.idEmprestimo = idEmprestimo;
-		this.dateReserva = dateReserva;
+		this.dataReserva = dataReserva;
 		StatusReserva = statusReserva;
 	}
 	
-	public Reserva(Integer id, Integer idUsuario, Integer idEmprestimo, Date dateReserva, String statusReserva) {
+	public Reserva(Integer id,String dataReserva,String statusReserva,Integer idUsuario, Integer idEmprestimo) {
 		super();
 		this.id = id;
 		this.idUsuario = idUsuario;
 		this.idEmprestimo = idEmprestimo;
-		this.dateReserva = dateReserva;
+		this.dataReserva = dataReserva;
 		StatusReserva = statusReserva;
 	}
 	
@@ -52,12 +51,12 @@ public class Reserva {
 		this.idEmprestimo = idEmprestimo;
 	}
 
-	public Date getDateReserva() {
-		return dateReserva;
+	public String getDataReserva() {
+		return dataReserva;
 	}
 
-	public void setDateReserva(Date dateReserva) {
-		this.dateReserva = dateReserva;
+	public void setDataReserva(String dataReserva) {
+		this.dataReserva = dataReserva;
 	}
 
 	public String getStatusReserva() {

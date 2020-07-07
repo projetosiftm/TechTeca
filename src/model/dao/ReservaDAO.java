@@ -19,11 +19,11 @@ public class ReservaDAO implements DAO {
 		Reserva reserva = null;
 		try {
 			stmt = con.createStatement();
-			String sql = "SELECT * FROM reserva where id='" + (String) id + "'";
+			String sql = "SELECT * FROM reserva where id_reserva='" + (String) id + "'";
 			ResultSet rs = stmt.executeQuery(sql);
 			if (rs.next()) {
-				reserva = new Reserva(rs.getInt("id"), rs.getInt("idUsuario"), rs.getInt("idEmprestimo"),
-						rs.getDate("dateReserva"), rs.getString("statusReserva"));
+				reserva = new Reserva(rs.getInt("id_reserva"),rs.getString("data_reserva"), 
+						rs.getString("status_reserva"),rs.getInt("id_usuario"), rs.getInt("id_emprestimo"));
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -54,7 +54,7 @@ public class ReservaDAO implements DAO {
 		try {
 			stmt = con.createStatement();
 			String sql = "insert into reserva(data_reserva,status_reserva,id_usuario,id_emprestimo) values('"
-					+ ((Reserva) entidade).getDateReserva() + "','" 
+					+ ((Reserva) entidade).getDataReserva() + "','" 
 					+ ((Reserva) entidade).getStatusReserva() + "','" 
 					+ ((Reserva) entidade).getIdUsuario()  + "','" 
 					+ ((Reserva) entidade).getIdEmprestimo()
@@ -87,7 +87,7 @@ public class ReservaDAO implements DAO {
 		Statement stmt = null;
 		try {
 			stmt = con.createStatement();
-			String sql = "delete from reserva where id=" + id;
+			String sql = "delete from reserva where id_reserva=" + id;
 			System.out.println(sql);
 			stmt.executeUpdate(sql);
 		} catch (SQLException se) {
@@ -118,8 +118,8 @@ public class ReservaDAO implements DAO {
 			String sql = "SELECT * FROM reserva;";
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
-				reserva.add(new Reserva(rs.getInt("id"), rs.getInt("idUsuario"), rs.getInt("idEmprestimo"),
-						rs.getDate("dateReserva"), rs.getString("statusReserva")));
+				reserva.add(new Reserva(rs.getInt("id_reserva"),rs.getString("data_reserva"), 
+						rs.getString("status_reserva"),rs.getInt("id_usuario"), rs.getInt("id_emprestimo")));
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -147,7 +147,7 @@ public class ReservaDAO implements DAO {
 		// montar a consulta
 		Statement stmt = null;
 		try {
-			Date dataReserva = ((Reserva) entidade).getDateReserva();
+			String dataReserva = ((Reserva) entidade).getDataReserva();
 			String statusReserva = ((Reserva) entidade).getStatusReserva();
 			int idUsuario = ((Reserva) entidade).getIdUsuario();
 			int idEmprestimo = ((Reserva) entidade).getIdEmprestimo();
@@ -157,7 +157,7 @@ public class ReservaDAO implements DAO {
 					+ " status_reserva ='" + statusReserva + "'," 
 					+ " id_usuario = '" + idUsuario + "',"  
 					+ " id_emprestimo ='" + idEmprestimo + "'" 
-					+ " WHERE id = " + id;
+					+ " WHERE id_reserva = " + id;
 			stmt.executeUpdate(sql);
 		} catch (SQLException se) {
 			se.printStackTrace();

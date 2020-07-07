@@ -1,17 +1,20 @@
 package model.tarefa;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.dao.ReservaDAO;
+import model.javabean.Reserva;
 
-public class ExcluirReservaTarefa implements Tarefa {
+public class ListarTodosReservaTarefa implements Tarefa {
 
 	@Override
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String id = request.getParameter("id");
-		new ReservaDAO().excluir(id);
-		return "reserva";
+		List<Reserva> lista = new ReservaDAO().listarTodos();
+		request.setAttribute("reserva", lista);
+		return "listaReserva";
 	}
 
 }

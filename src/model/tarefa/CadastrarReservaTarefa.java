@@ -11,11 +11,11 @@ public class CadastrarReservaTarefa implements Tarefa {
 	@Override
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// recuperar os parametros do formulario
-		Reserva reserva = new Reserva(Integer.parseInt(request.getParameter("id")),
+		Reserva reserva = new Reserva(
+				request.getParameter("dataReserva"), 
+				request.getParameter("statusReserva"),
 				Integer.parseInt(request.getParameter("idUsuario")),
-				Integer.parseInt(request.getParameter("idEmprestimo")),
-				java.sql.Date.valueOf(request.getParameter("dateReserva")),
-				request.getParameter("statusReserva"));
+				Integer.parseInt(request.getParameter("idEmprestimo")));
 		// enviar dados para o DAO persistir
 		new ReservaDAO().salvar(reserva);
 		//retornar o nome da view
