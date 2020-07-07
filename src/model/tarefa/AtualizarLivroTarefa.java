@@ -27,23 +27,23 @@ public String executa(HttpServletRequest request, HttpServletResponse response) 
 
 private String atualizaRegistro(HttpServletRequest request) {
 		Livro livro = new Livro(Integer.parseInt(request.getParameter("id")),
-				Integer.parseInt(request.getParameter("idAdministrador")),
-				Integer.parseInt(request.getParameter("ano")),
 				request.getParameter("titulo"),
 				request.getParameter("autor"),
 				request.getParameter("descricao"),
+				request.getParameter("ano"),
 				request.getParameter("editora"),
 				request.getParameter("idioma"),
 				request.getParameter("isbn"),
-				request.getParameter("foto"));
+				request.getParameter("foto"),
+				Integer.parseInt(request.getParameter("idAdministrador")));
 		new LivroDAO().atualizar(livro);
-		return "index";
+		return "atualizarLivro";
 	}
 
 private String exibeForm(HttpServletRequest request) {
 		Livro livro = (Livro) new LivroDAO().recuperarPorId(request.getParameter("id"));
 		request.setAttribute("entidade",livro);
-		return "atualiza";
+		return "atualizarLivro";
 	}
 
 }

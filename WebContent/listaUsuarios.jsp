@@ -12,7 +12,7 @@
 	<hr>
 	<c:choose>
 		<c:when test="${usuario != NULL}">
-			<h1>Olá ${usuario.nome}</h1>
+			<h1>Olá ${usuario.usuario}</h1>
 			<a href="logout">Logout</a>
 			<a href="exibeFormCadastroUsuario">Cadastrar novo usuário</a>
 			<a href="listarTodos">Listar todos</a>

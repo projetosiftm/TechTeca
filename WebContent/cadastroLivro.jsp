@@ -11,11 +11,11 @@
 <h1>Tech Teca</h1>
 	<hr>
 	<c:choose>
-		<c:when test="${usuario != NULL}">
-			<h1>Olá ${usuario.usuario}</h1>
+		<c:when test="${usuario != NULL && tipoUsuario == 1}">
+		<h1>Olá ${usuario.usuario}</h1>
 		<a href="logout">Logout</a>
-		<a href="exibeFormCadastroUsuario">Cadastrar novo usuário</a>
-		<a href="listarTodos">Listar todos</a>
+		<a href="listarTodosLivros">Listar todos livros</a>
+		<a href="exibeFormLivro">Cadastrar livro</a>
 		</c:when>
 
 		<c:otherwise>

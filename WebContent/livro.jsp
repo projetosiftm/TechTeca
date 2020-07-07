@@ -14,7 +14,7 @@
 		<c:when test="${usuario != NULL && tipoUsuario == 1}">
 		<h1>Olá ${usuario.usuario}</h1>
 		<a href="logout">Logout</a>
-		<a href="listarTodosLivros">Listar de livros</a>
+		<a href="listarTodosLivros">Listar todos livros</a>
 		<a href="exibeFormLivro">Cadastrar livro</a>
 		</c:when>	
 		<c:otherwise>

@@ -5,15 +5,14 @@ import java.util.Date;
 public class Livro {
 
 	private Integer id, idAdministrador;
-	private String titulo, autor, descricao, editora, idioma, isbn, foto;
-	private Date ano;
+	private String titulo, autor, descricao, editora, idioma, isbn, foto,ano;
+
 
 	public Livro() {
 		super();
 	}
 
-	public Livro(Integer idAdministrador, Date ano, String titulo, String autor, String descricao, String editora,
-			String idioma, String isbn, String foto) {
+	public Livro(String titulo, String autor, String descricao, String ano, String editora, String idioma,String isbn, String foto, int idAdministrador) {
 		this.idAdministrador = idAdministrador;
 		this.ano = ano;
 		this.titulo = titulo;
@@ -25,8 +24,7 @@ public class Livro {
 		this.foto = foto;
 	}
 
-	public Livro(Integer id, Integer idAdministrador, Date ano, String titulo, String autor, String descricao,
-			String editora, String idioma, String isbn, String foto) {
+	public Livro(Integer id, String titulo, String autor, String descricao, String ano, String editora, String idioma,String isbn, String foto, Integer idAdministrador) {
 		this.id = id;
 		this.idAdministrador = idAdministrador;
 		this.ano = ano;
@@ -55,11 +53,11 @@ public class Livro {
 		this.idAdministrador = idAdministrador;
 	}
 
-	public Date getAno() {
+	public String getAno() {
 		return ano;
 	}
 
-	public void setAno(Date ano) {
+	public void setAno(String ano) {
 		this.ano = ano;
 	}
 

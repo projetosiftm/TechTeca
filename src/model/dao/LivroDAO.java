@@ -18,13 +18,13 @@ public class LivroDAO implements DAO {
 		Livro livro = null;
 		try {
 			stmt = con.createStatement();
-			String sql = "SELECT * FROM livro where id='" + (String) id + "'";
+			String sql = "SELECT * FROM livro where id_livro='" + (String) id + "'";
 			ResultSet rs = stmt.executeQuery(sql);
 			if (rs.next()) {
-				livro = new Livro(rs.getInt("id"), rs.getInt("idAdministrador"), rs.getDate("ano"),
-						rs.getString("titulo"), rs.getString("autor"),rs.getString("descricao"), rs.getString("editora"), 
+				livro = new Livro(rs.getInt("id"),rs.getString("titulo"),
+						rs.getString("autor"), rs.getString("descricao"),rs.getString("ano"), rs.getString("editora"), 
 						rs.getString("idioma"),
-						rs.getString("isbn"), rs.getString("foto"));
+						rs.getString("isbn"), rs.getString("foto"),rs.getInt("id_administrador"));
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -93,7 +93,7 @@ public class LivroDAO implements DAO {
 		Statement stmt = null;
 		try {
 			stmt = con.createStatement();
-			String sql = "delete from livro where id=" + id;
+			String sql = "delete from livro where id_livro=" + id;
 			System.out.println(sql);
 			stmt.executeUpdate(sql);
 		} catch (SQLException se) {
@@ -124,10 +124,9 @@ public class LivroDAO implements DAO {
 			String sql = "SELECT * FROM livro;";
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
-				livro.add(new Livro(rs.getInt("id"), rs.getInt("idAdministrador"), rs.getDate("ano"),
-						rs.getString("titulo"), rs.getString("autor"),rs.getString("descricao"), rs.getString("editora"), 
-						rs.getString("idioma"),
-						rs.getString("isbn"), rs.getString("foto")));
+				livro.add(new Livro(rs.getInt("id_livro"),rs.getString("titulo"),
+						rs.getString("autor"), rs.getString("descricao"),rs.getString("ano"),rs.getString("editora"),
+						rs.getString("idioma"),rs.getString("isbn"), rs.getString("foto"),rs.getInt("id_administrador")));
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -158,7 +157,7 @@ public class LivroDAO implements DAO {
 			String titulo = ((Livro) entidade).getTitulo();
 			String autor = ((Livro) entidade).getAutor();
 			String descricao = ((Livro) entidade).getDescricao();
-			Date ano = ((Livro) entidade).getAno();
+			String ano = ((Livro) entidade).getAno();
 			String editora = ((Livro) entidade).getEditora();
 			String idioma = ((Livro) entidade).getIdioma();
 			String isbn = ((Livro) entidade).getIsbn();
@@ -175,7 +174,7 @@ public class LivroDAO implements DAO {
 					+ " isbn = '" + isbn + "'," 
 					+ " foto = '" + foto + "'," 
 					+ " id_administrador ='" + idAdministrador + "'" 
-					+ " WHERE id = " + id;
+					+ " WHERE id_livro = " + id;
 			stmt.executeUpdate(sql);
 		} catch (SQLException se) {
 			se.printStackTrace();
