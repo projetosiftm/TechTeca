@@ -18,11 +18,12 @@ public class EmprestimoDAO implements DAO {
 		Emprestimo emprestimo = null;
 		try {
 			stmt = con.createStatement();
-			String sql = "SELECT * FROM emprestimo where id='" + (String) id + "'";
+			String sql = "SELECT * FROM emprestimo where id_emprestimo='" + (String) id + "'";
 			ResultSet rs = stmt.executeQuery(sql);
 			if (rs.next()) {
-				emprestimo = new Emprestimo(rs.getInt("id"), rs.getInt("idFuncionario"), rs.getInt("idUsuario"),
-						rs.getDate("dateEmprestimo"), rs.getDate("dateDevolucao"));
+				emprestimo = new Emprestimo(rs.getInt("id_emprestimo"),rs.getString("data_emprestimo"),
+						rs.getString("data_devolucao"),rs.getInt("id_funcionario"),
+						rs.getInt("id_usuario"));
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -84,7 +85,7 @@ public class EmprestimoDAO implements DAO {
 		Statement stmt = null;
 		try {
 			stmt = con.createStatement();
-			String sql = "delete from emprestimo where id=" + id;
+			String sql = "delete from emprestimo where id_emprestimo=" + id;
 			System.out.println(sql);
 			stmt.executeUpdate(sql);
 		} catch (SQLException se) {
@@ -115,8 +116,9 @@ public class EmprestimoDAO implements DAO {
 			String sql = "SELECT * FROM emprestimo;";
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
-				emprestimo.add(new Emprestimo(rs.getInt("id"), rs.getInt("idFuncionario"), rs.getInt("idUsuario"),
-						rs.getDate("dateEmprestimo"), rs.getDate("dateDevolucao")));
+				emprestimo.add(new Emprestimo(rs.getInt("id_emprestimo"),rs.getString("data_emprestimo"),
+						rs.getString("data_devolucao"),rs.getInt("id_funcionario"),
+						rs.getInt("id_usuario")));
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -144,15 +146,15 @@ public class EmprestimoDAO implements DAO {
 		// montar a consulta
 		Statement stmt = null;
 		try {
-			Date dataEmprestimo = ((Emprestimo) entidade).getDateEmprestimo();
-			Date dataDevolucao = ((Emprestimo) entidade).getDataDevolucao();
+			String dateEmprestimo = ((Emprestimo) entidade).getDateEmprestimo();
+			String dataDevolucao = ((Emprestimo) entidade).getDataDevolucao();
 			int idFuncionario = ((Emprestimo) entidade).getIdFuncionario();
 			int idUsuario = ((Emprestimo) entidade).getIdUsuario();
 			int id = ((Emprestimo) entidade).getId();
 			stmt = con.createStatement();
-			String sql = "UPDATE emprestimo" + " SET data_emprestimo = '" + dataEmprestimo + "'," + " data_devolucao ='"
+			String sql = "UPDATE emprestimo" + " SET data_emprestimo = '" + dateEmprestimo + "'," + " data_devolucao ='"
 					+ dataDevolucao + "'," + " id_funcionario = '" + idFuncionario + "'," + " id_usuario ='" + idUsuario
-					+ "'" + " WHERE id = " + id;
+					+ "'" + " WHERE id_emprestimo = " + id;
 			stmt.executeUpdate(sql);
 		} catch (SQLException se) {
 			se.printStackTrace();

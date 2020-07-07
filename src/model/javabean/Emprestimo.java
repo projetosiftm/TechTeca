@@ -4,19 +4,19 @@ import java.util.Date;
 
 public class Emprestimo {
 	private Integer id, idFuncionario, idUsuario;
-	private Date dateEmprestimo, dataDevolucao;
+	private String dateEmprestimo, dataDevolucao;
 
 	public Emprestimo() {
 	}
 
-	public Emprestimo(Integer idFuncionario, Integer idUsuario, Date dateEmprestimo, Date dataDevolucao) {
+	public Emprestimo(String dateEmprestimo ,String dataDevolucao,Integer idFuncionario, Integer idUsuario) {
 		this.idFuncionario = idFuncionario;
 		this.idUsuario = idUsuario;
 		this.dateEmprestimo = dateEmprestimo;
 		this.dataDevolucao = dataDevolucao;
 	}
 
-	public Emprestimo(Integer id, Integer idFuncionario, Integer idUsuario, Date dateEmprestimo, Date dataDevolucao) {
+	public Emprestimo(Integer id,String dateEmprestimo ,String dataDevolucao,Integer idFuncionario, Integer idUsuario) {
 		super();
 		this.id = id;
 		this.idFuncionario = idFuncionario;
@@ -49,19 +49,19 @@ public class Emprestimo {
 		this.idUsuario = idUsuario;
 	}
 
-	public Date getDateEmprestimo() {
+	public String getDateEmprestimo() {
 		return dateEmprestimo;
 	}
 
-	public void setDateEmprestimo(Date dateEmprestimo) {
+	public void setDateEmprestimo(String dateEmprestimo) {
 		this.dateEmprestimo = dateEmprestimo;
 	}
 
-	public Date getDataDevolucao() {
+	public String getDataDevolucao() {
 		return dataDevolucao;
 	}
 
-	public void setDataDevolucao(Date dataDevolucao) {
+	public void setDataDevolucao(String dataDevolucao) {
 		this.dataDevolucao = dataDevolucao;
 	}
 

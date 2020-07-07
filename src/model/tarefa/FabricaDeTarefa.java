@@ -11,21 +11,29 @@ public class FabricaDeTarefa {
 	static {
 		tarefas.put("POST/login", new LoginTarefa());
 		tarefas.put("GET/livro", new LivroTarefa());
+		tarefas.put("GET/emprestimo", new EmprestimoTarefa());
 		tarefas.put("GET/logout", new LogoutTarefa());
 		tarefas.put("GET/exibeFormCadastroUsuario", new ExibeFormCadastroUsuarioTarefa());
 		tarefas.put("POST/cadastrarUsuario", new CadastrarUsuarioTarefa());
 		tarefas.put("GET/exibeFormLivro", new ExibeFormLivroTarefa());
 		tarefas.put("POST/cadastrarLivro", new CadastrarLivroTarefa());
+		tarefas.put("GET/exibeFormEmprestimo", new ExibeFormEmprestimoTarefa());
+		tarefas.put("POST/cadastrarEmprestimo", new CadastrarEmprestimoTarefa());
 		tarefas.put("GET/listarTodos", new ListarTodosTarefa());
 		tarefas.put("GET/listarTodosLivros", new ListarTodosLivrosTarefa());
+		tarefas.put("GET/listarTodosEmprestimo", new ListarTodosEmprestimoTarefa());
 		Tarefa t = new AtualizaUsuarioTarefa();
 		tarefas.put("GET/atualizar", t);
 		tarefas.put("POST/atualizar", t);
 		Tarefa n = new AtualizarLivroTarefa();
 		tarefas.put("GET/atualizarLivro", n);
 		tarefas.put("POST/atualizarLivro", n);
+		Tarefa e = new AtualizarEmprestimoTarefa();
+		tarefas.put("GET/atualizarEmprestimo", e);
+		tarefas.put("POST/atualizarEmprestimo", e);
 		tarefas.put("GET/excluir", new ExcluirUsuarioTarefa());
 		tarefas.put("GET/excluir", new ExcluirLivroTarefa());
+		tarefas.put("GET/excluir", new ExcluirEmprestimoTarefa());
 	}
 
 	public static Tarefa getTarefa(HttpServletRequest request) {

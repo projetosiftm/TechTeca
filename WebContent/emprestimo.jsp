@@ -5,30 +5,18 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Arquitetura de referência</title>
+<title>Emprestimo de livro</title>
 </head>
 <body>
-	<h1>Arquitetura de referência</h1>
+	<h1>Emprestimo de livro</h1>
 	<hr>
 	<c:choose>
-		<c:when test="${usuario != NULL && tipoUsuario == 1}">
-			<h1>Olá ${usuario.usuario}</h1>
-		<a href="logout">Logout</a>
-		<a href="exibeFormCadastroUsuario">Cadastrar novo usuário</a>
-		<a href="listarTodos">Listar todos</a>
-		<a href="livro">Livros</a>
-		</c:when>
 		<c:when test="${usuario != NULL && tipoUsuario == 2}">
-			<h1>Olá ${usuario.usuario}</h1>
+		<h1>Olá ${usuario.usuario}</h1>
 		<a href="logout">Logout</a>
-		<a href="emprestimo">Emprestimo</a>
-		</c:when>
-		<c:when test="${usuario != NULL && tipoUsuario == 3}">
-			<h1>Olá ${usuario.usuario}</h1>
-		<a href="logout">Logout</a>
-		<a href="reserva">Reserva de Livros</a>
-		</c:when>
-
+		<a href="listarTodosEmprestimo">Lista de emprestimos</a>
+		<a href="exibeFormEmprestimo">Cadastrar emprestimo</a>
+		</c:when>	
 		<c:otherwise>
 			<c:if test="${erro != NULL}">${erro}</c:if>
 

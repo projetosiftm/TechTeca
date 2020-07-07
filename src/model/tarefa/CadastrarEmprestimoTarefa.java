@@ -11,11 +11,11 @@ public class CadastrarEmprestimoTarefa implements Tarefa {
 	@Override
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// recuperar os parametros do formulario
-		Emprestimo emprestimo = new Emprestimo(Integer.parseInt(request.getParameter("id")),
+		Emprestimo emprestimo = new Emprestimo(
+				request.getParameter("dateEmprestimo"),
+				request.getParameter("dataDevolucao"),
 				Integer.parseInt(request.getParameter("idFuncionario")),
-				Integer.parseInt(request.getParameter("idUsuario")),
-				java.sql.Date.valueOf(request.getParameter("dateEmprestimo")),
-				java.sql.Date.valueOf(request.getParameter("dataDevolucao")));
+				Integer.parseInt(request.getParameter("idUsuario")));
 		// enviar dados para o DAO persistir
 		new EmprestimoDAO().salvar(emprestimo);
 		//retornar o nome da view

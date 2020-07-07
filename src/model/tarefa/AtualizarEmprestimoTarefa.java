@@ -27,18 +27,18 @@ public String executa(HttpServletRequest request, HttpServletResponse response) 
 
 private String atualizaRegistro(HttpServletRequest request) {
 		Emprestimo emprestimo = new Emprestimo(Integer.parseInt(request.getParameter("id")),
+				request.getParameter("dateEmprestimo"),
+				request.getParameter("dataDevolucao"),
 				Integer.parseInt(request.getParameter("idFuncionario")),
-				Integer.parseInt(request.getParameter("idUsuario")),
-				java.sql.Date.valueOf(request.getParameter("dateEmprestimo")),
-				java.sql.Date.valueOf(request.getParameter("dataDevolucao")));
+				Integer.parseInt(request.getParameter("idUsuario")));
 		new EmprestimoDAO().atualizar(emprestimo);
-		return "index";
+		return "emprestimo";
 	}
 
 private String exibeForm(HttpServletRequest request) {
 		Emprestimo emprestimo = (Emprestimo) new EmprestimoDAO().recuperarPorId(request.getParameter("id"));
 		request.setAttribute("entidade",emprestimo);
-		return "atualiza";
+		return "atualizarEmprestimo";
 	}
 
 }
