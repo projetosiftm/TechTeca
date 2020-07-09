@@ -55,7 +55,7 @@
 					<td>${u.nome}</td>
 					<td>${u.dataVencimentoMulta}</td>
 					<td>${u.valorMulta}</td>
-					<td><a href="excluir?id=${u.id}">Excluir</a></td>
+					<td><a href="excluir?id=${u.id}">Liquidar</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
