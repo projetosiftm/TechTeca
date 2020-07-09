@@ -19,7 +19,7 @@
 		<c:when test="${usuario != NULL && tipoUsuario == 2}">
 			<h1>Olá ${usuario.usuario}</h1>
 		<a href="logout">Logout</a>
-		<a href="emprestimo">Emprestimo</a>
+		<a href="listarTodasMultas">Multas</a>
 		</c:when>
 		<c:when test="${usuario != NULL && tipoUsuario == 3}">
 			<h1>Olá ${usuario.usuario}</h1>

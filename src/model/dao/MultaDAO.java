@@ -19,11 +19,11 @@ public class MultaDAO implements DAO {
 		Multa multa = null;
 		try {
 			stmt = con.createStatement();
-			String sql = "SELECT * FROM multa where id='" + (String) id + "'";
+			String sql = "SELECT * FROM multa where id_multa='" + (String) id + "'";
 			ResultSet rs = stmt.executeQuery(sql);
 			if (rs.next()) {
-				multa = new Multa(rs.getInt("id"), rs.getInt("idAdministrador"), rs.getInt("idEmprestimo"),
-						rs.getInt("idItemEmprestimo"), rs.getDouble("valorMulta"),rs.getDate("dataVencimentoMulta"));
+				multa = new Multa(rs.getInt("id"), rs.getString("dataVencimentoMulta"), rs.getDouble("valorMulta"),
+						rs.getInt("idAdministrador"), rs.getInt("idEmprestimo"),rs.getInt("idItemEmprestimo"));
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -88,7 +88,7 @@ public class MultaDAO implements DAO {
 		Statement stmt = null;
 		try {
 			stmt = con.createStatement();
-			String sql = "delete from multa where id=" + id;
+			String sql = "delete from multa where id_multa=" + id;
 			System.out.println(sql);
 			stmt.executeUpdate(sql);
 		} catch (SQLException se) {
@@ -116,11 +116,31 @@ public class MultaDAO implements DAO {
 		List<Multa> multa = new ArrayList<Multa>();
 		try {
 			stmt = con.createStatement();
-			String sql = "SELECT * FROM multa;";
+			String sql = "SELECT m.id_multa,l.foto,l.titulo,l.autor,l.isbn,ex.id_exemplar,"
+					+ "e.data_emprestimo,e.data_devolucao,u.nome,m.data_vencimento_multa,m.valor_multa FROM multa as m " + 
+					"inner join emprestimo as e " + 
+					"ON m.id_emprestimo = e.id_emprestimo " + 
+					"inner join item_emprestimo as ie " + 
+					"on e.id_emprestimo = ie.id_emprestimo " + 
+					"inner join exemplar as ex " + 
+					"on ie.id_exemplar = ex.id_exemplar " + 
+					"inner join livro as l " + 
+					"on ex.id_livro = l.id_livro " + 
+					"inner join usuario as u " + 
+					"on e.id_usuario = u.id_usuario;";
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
-				multa.add(new Multa(rs.getInt("id"), rs.getInt("idAdministrador"), rs.getInt("idEmprestimo"),
-						rs.getInt("idItemEmprestimo"), rs.getDouble("valorMulta"),rs.getDate("dataVencimentoMulta")));
+				multa.add(new Multa(rs.getInt("id_multa"),
+						rs.getString("foto"),
+						rs.getString("titulo"),
+						rs.getString("autor"),
+						rs.getString("isbn"),
+						rs.getInt("id_exemplar"),
+						rs.getString("data_emprestimo"),
+						rs.getString("data_devolucao"), 
+						rs.getString("nome"),
+						rs.getString("data_vencimento_multa"),
+						rs.getDouble("valor_multa")));
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -148,7 +168,7 @@ public class MultaDAO implements DAO {
 		// montar a consulta
 		Statement stmt = null;
 		try {
-			Date dataVencimentoMulta = ((Multa) entidade).getDataVencimentoMulta();
+			String dataVencimentoMulta = ((Multa) entidade).getDataVencimentoMulta();
 			double valorMulta = ((Multa) entidade).getValorMulta();
 			int idAdministrador = ((Multa) entidade).getIdAdministrador();
 			int idEmprestimo = ((Multa) entidade).getIdEmprestimo();
@@ -160,7 +180,7 @@ public class MultaDAO implements DAO {
 					+ " id_administrador = '" + idAdministrador + "',"
 					+ " id_emprestimo = '" + idEmprestimo + "',"  
 					+ " id_item_emprestimo ='" + idItemEmprestimo + "'" 
-					+ " WHERE id = " + id;
+					+ " WHERE id_multa = " + id;
 			stmt.executeUpdate(sql);
 		} catch (SQLException se) {
 			se.printStackTrace();
