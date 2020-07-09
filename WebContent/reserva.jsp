@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Reserva de livro</title>
+<title>Tech Teca</title>
 </head>
 <body>
 	<h1>Reserva de livro</h1>
@@ -14,8 +14,8 @@
 		<c:when test="${usuario != NULL && tipoUsuario == 3}">
 		<h1>Olá ${usuario.usuario}</h1>
 		<a href="logout">Logout</a>
+		<a href="login">Inicio</a>
 		<a href="listarTodosReserva">Lista de Reserva</a>
-		<a href="exibeFormReserva">Cadastrar Reserva</a>
 		</c:when>	
 		<c:otherwise>
 			<c:if test="${erro != NULL}">${erro}</c:if>

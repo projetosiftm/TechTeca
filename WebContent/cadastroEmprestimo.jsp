@@ -5,15 +5,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Cadastro de Emprestimo</title>
+<title>Tech Teca</title>
 </head>
 <body>
-<h1>Tech Teca</h1>
+<h1>Cadastro de Emprestimo</h1>
 	<hr>
 	<c:choose>
 		<c:when test="${usuario != NULL && tipoUsuario == 2}">
 		<h1>Olá ${usuario.usuario}</h1>
 		<a href="logout">Logout</a>
+		<a href="login">Inicio</a>
 		<a href="listarTodosEmprestimo">Lista de emprestimos</a>
 		<a href="exibeFormEmprestimo">Cadastrar emprestimo</a>
 		</c:when>

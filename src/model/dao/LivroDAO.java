@@ -146,6 +146,43 @@ public class LivroDAO implements DAO {
 		}
 		return livro;
 	}
+	
+	
+	public List listarTodosAcervo() {
+		Connection con = FabricaDeConexoes.getConnection();
+		Statement stmt = null;
+		List<Livro> livro = new ArrayList<Livro>();
+		try {
+			stmt = con.createStatement();
+			String sql = "SELECT l.foto,l.titulo,l.autor,l.descricao,l.ano,l.editora,l.idioma,l.isbn,r.status_reserva FROM reserva as r "
+					+ "inner join item_reserva as ir " + 
+					"on r.id_reserva = ir.id_reserva " + 
+					"inner join livro as l " + 
+					"on ir.id_livro = l.id_livro;";
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				livro.add(new Livro(rs.getString("foto"),rs.getString("titulo"),
+						rs.getString("autor"), rs.getString("descricao"),rs.getString("ano"),rs.getString("editora"),
+						rs.getString("idioma"),rs.getString("isbn"), rs.getString("status_reserva")));
+			}
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null) {
+					stmt.close();
+				}
+				if (con != null) {
+					con.close();
+				}
+			} catch (SQLException se2) {
+				se2.printStackTrace();
+			}
+		}
+		return livro;
+	}
 
 	@Override
 	public void atualizar(Object entidade) {

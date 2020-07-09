@@ -5,7 +5,7 @@ import java.util.Date;
 public class Livro {
 
 	private Integer id, idAdministrador;
-	private String titulo, autor, descricao, editora, idioma, isbn, foto,ano;
+	private String titulo, autor, descricao, editora, idioma, isbn, foto,ano, statusReserva;
 
 
 	public Livro() {
@@ -35,6 +35,19 @@ public class Livro {
 		this.idioma = idioma;
 		this.isbn = isbn;
 		this.foto = foto;
+	}
+	
+	
+	public Livro(String foto,String titulo, String autor, String descricao, String ano, String editora, String idioma,String isbn,  String statusReserva) {
+		this.ano = ano;
+		this.titulo = titulo;
+		this.autor = autor;
+		this.descricao = descricao;
+		this.editora = editora;
+		this.idioma = idioma;
+		this.isbn = isbn;
+		this.foto = foto;
+		this.statusReserva = statusReserva;
 	}
 
 	public Integer getId() {
@@ -116,5 +129,16 @@ public class Livro {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
+
+	public String getStatusReserva() {
+		return statusReserva;
+	}
+
+	public void setStatusReserva(String statusReserva) {
+		this.statusReserva = statusReserva;
+	}
+	
+	
+	
 
 }

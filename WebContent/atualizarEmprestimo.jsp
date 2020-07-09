@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Atualizar Emprestimo</title>
+<title>Tech Teca</title>
 </head>
 <body>
-	<h1>Arquitetura de referência</h1>
+	<h1>Atualizar Emprestimo</h1>
 	<hr>
 	<c:choose>
 		<c:when test="${usuario != NULL && tipoUsuario == 2}">

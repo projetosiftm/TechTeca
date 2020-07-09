@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Emprestimo de livro</title>
+<title>Tech Teca</title>
 </head>
 <body>
 	<h1>Emprestimo de livro</h1>
@@ -14,6 +14,7 @@
 		<c:when test="${usuario != NULL && tipoUsuario == 2}">
 		<h1>Olá ${usuario.usuario}</h1>
 		<a href="logout">Logout</a>
+		<a href="login">Inicio</a>
 		<a href="listarTodosEmprestimo">Lista de emprestimos</a>
 		<a href="exibeFormEmprestimo">Cadastrar emprestimo</a>
 		</c:when>	

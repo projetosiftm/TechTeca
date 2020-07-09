@@ -5,15 +5,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Atualizar Emprestimo</title>
+<title>Tech Teca</title>
 </head>
 <body>
-	<h1>Arquitetura de referência</h1>
+	<h1>Atualizar Reserva</h1>
 	<hr>
 	<c:choose>
 		<c:when test="${usuario != NULL && tipoUsuario == 2}">
 		<h1>Olá ${usuario.usuario}</h1>
-	<a href="logout">Logout</a>
+		<a href="logout">Logout</a>		
 		<a href="listarTodosReserva">Lista de Reserva</a>
 		<a href="exibeFormReserva">Cadastrar Reserva</a>
 		</c:when>

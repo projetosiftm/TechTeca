@@ -5,17 +5,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Listar Reserva</title>
+<title>Tech Teca</title>
 </head>
 <body>
-	<h1>Arquitetura de referência</h1>
+	<h1>Lista de reservas</h1>
 	<hr>
 	<c:choose>
 		<c:when test="${usuario != NULL &&  tipoUsuario == 3}">
 			<h1>Olá ${usuario.usuario}</h1>
 		<a href="logout">Logout</a>
+		<a href="login">Inicio</a>
 		<a href="listarTodosReserva">Lista de Reserva</a>
-		<a href="exibeFormReserva">Cadastrar Reserva</a>
 		</c:when>
 
 		<c:otherwise>
@@ -31,20 +31,30 @@
 	<table border=1>
 		<thead>
 			<th>Id</th>
-			<th>Data Reserva</th>
-			<th>Status Reserva</th>
-			<th>Id Usuario</th>
-			<th>Id Emprestimo</th>
+			<th>Id Administrador</th>
+			<th>Ano</th>
+			<th>Titulo</th>
+			<th>Autor</th>
+			<th>Descrição</th>
+			<th>Editora</th>
+			<th>Idioma</th>
+			<th>Isbn</th>
+			<th>Foto</th>
 		</thead>
 		<tbody>
 			<c:forEach var="u" items="${reserva}">
 				<tr>
 					<td>${u.id}</td>
-					<td>${u.dataReserva}</td>
-					<td>${u.statusReserva}</td>
-					<td>${u.idUsuario}</td>
-					<td>${u.idEmprestimo}</td>
-					<td><a href="atualizarReserva?id=${u.id}">Atualizar</a><a href="excluir?id=${u.id}">Excluir</a></td>
+					<td>${u.idAdministrador}</td>
+					<td>${u.ano}</td>
+					<td>${u.titulo}</td>
+					<td>${u.autor}</td>
+					<td>${u.descricao}</td>
+					<td>${u.editora}</td>
+					<td>${u.idioma}</td>
+					<td>${u.isbn}</td>
+					<td><img width="100px" height="100px" src="../imagens/${u.foto}"></td>
+					<td><a href="exibeFormReserva?id=${u.id}">Reservar</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

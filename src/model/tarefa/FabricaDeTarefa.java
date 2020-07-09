@@ -26,6 +26,7 @@ public class FabricaDeTarefa {
 		tarefas.put("GET/listarTodosLivros", new ListarTodosLivrosTarefa());
 		tarefas.put("GET/listarTodosEmprestimo", new ListarTodosEmprestimoTarefa());
 		tarefas.put("GET/listarTodosReserva", new ListarTodosReservaTarefa());
+		tarefas.put("GET/listarTodosAcervo", new ListarTodosAcervoTarefa());
 		Tarefa t = new AtualizaUsuarioTarefa();
 		tarefas.put("GET/atualizar", t);
 		tarefas.put("POST/atualizar", t);
